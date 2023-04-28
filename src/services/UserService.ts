@@ -6,7 +6,7 @@ import mongoose, {ClientSession} from "mongoose";
 import user from "../models/User";
 const ApiError=require('../exceptions/api-error')
 class UserService{
-    async create({link:_id, linkType, name, surname, idCreator}:{link:string, linkType:string, name:string, surname:string, idCreator:string}){
+    async create({link:_id, linkType, name, surname, idCreator}:{link:string, linkType:string, name:string, surname:string, idCreator:string}, fingerprint:string){
         const count:Array<IUSer>= await User.find();
         const link=count.length+1;
         const Place=currectSchemaByLinkType(Number(linkType))
@@ -14,7 +14,7 @@ class UserService{
         if(ExistLinkToId)
             throw ApiError.BadRequest("Пользователь уже сещуствует", ['link'])
 
-        const LinkToId = await Place.create({_id, link, idCreator})
+        await Place.create({_id, link, idCreator, fingerprintCreator:fingerprint})
         const user = await User.create({_id: link, data: {name, surname, userLink: link}})
             if (user) return user
         else

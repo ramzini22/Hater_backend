@@ -24,6 +24,7 @@ const app = (0, express_1.default)();
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors = require('cors');
 const errorMiddleware = require('./src/middlewears/error-widdlewear');
+app.use('/', express_1.default.static('src/public'));
 app.use(cors({
     origin: 'http://localhost:5173',
     credentials: true

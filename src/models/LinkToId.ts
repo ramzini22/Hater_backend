@@ -1,12 +1,13 @@
-import * as mongoose from "mongoose";
+import {model, Schema} from "mongoose";
 import {ILink} from "./types";
 
-const link= new mongoose.Schema<ILink>({
+const link= new Schema<ILink>({
     _id:{type:String, require:true},
     link:{type:String, require:true},
-    idCreator:{type:String, required:true}
+    idCreator:{type:String, required:true},
+    fingerprintCreator:{type:String, required:true},
 })
-const VK = mongoose.model('link_to_id_vk', link)
-const INST = mongoose.model('link_to_id_inst', link)
-const SITES = mongoose.model('link_to_id_sites', link)
+const VK = model('link_to_id_vk', link)
+const INST = model('link_to_id_inst', link)
+const SITES = model('link_to_id_sites', link)
 export {VK, INST, SITES}

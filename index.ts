@@ -12,6 +12,8 @@ import mongoose from "mongoose";
 const cors = require('cors');
 const errorMiddleware= require('./src/middlewears/error-widdlewear')
 
+app.use('/', express.static('src/public'))
+
 app.use(cors({
   origin: 'http://localhost:5173',
   credentials: true}));
@@ -19,7 +21,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use('/token', TokenRouter)
 app.use('/api', router)
-
 
 app.use(errorMiddleware)
 async function startApp(){

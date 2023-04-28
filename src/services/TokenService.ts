@@ -18,7 +18,6 @@ class TokenService {
             tokenData.refreshToken=refreshToken
             return tokenData.save()
         }
-//        const user=await RegUser.create({_id:userId, refreshToken});
     }
     async registration(link:string, BegPassword:string){
         const user=await RegUser.findById(link)

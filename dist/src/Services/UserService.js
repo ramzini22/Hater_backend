@@ -16,7 +16,7 @@ const User_1 = __importDefault(require("../models/User"));
 const currectSchemaByLinkType_1 = __importDefault(require("../helpers/currectSchemaByLinkType"));
 const ApiError = require('../exceptions/api-error');
 class UserService {
-    create({ link: _id, linkType, name, surname, idCreator }) {
+    create({ link: _id, linkType, name, surname, idCreator }, fingerprint) {
         return __awaiter(this, void 0, void 0, function* () {
             const count = yield User_1.default.find();
             const link = count.length + 1;
@@ -24,7 +24,7 @@ class UserService {
             const ExistLinkToId = yield Place.findById(_id);
             if (ExistLinkToId)
                 throw ApiError.BadRequest("Пользователь уже сещуствует", ['link']);
-            const LinkToId = yield Place.create({ _id, link, idCreator });
+            yield Place.create({ _id, link, idCreator, fingerprintCreator: fingerprint });
             const user = yield User_1.default.create({ _id: link, data: { name, surname, userLink: link } });
             if (user)
                 return user;

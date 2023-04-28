@@ -1,7 +1,8 @@
 export interface ILink{
     _id:string
     link:string
-    idCreator?:string
+    idCreator:string
+    fingerprintCreator:string
 }
 export interface IUSer{
     _id:string
@@ -13,6 +14,7 @@ export interface IUSer{
 }
 export interface IRegUser{
     _id:string
+    fingerprint:string
     password:string
     isActivated:boolean
     refreshToken:string | null

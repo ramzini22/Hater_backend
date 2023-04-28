@@ -15,9 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const UserService_1 = __importDefault(require("../services/UserService"));
 class UserController {
     create(req, res, next) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const user = yield UserService_1.default.create(req.body);
+                const user = yield UserService_1.default.create(req.body, (_a = req.headers) === null || _a === void 0 ? void 0 : _a.fingerprint);
                 return res.status(200).json(user);
             }
             catch (e) {
