@@ -18,7 +18,8 @@ class UserController {
         var _a;
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const user = yield UserService_1.default.create(req.body, (_a = req.headers) === null || _a === void 0 ? void 0 : _a.fingerprint);
+                const fingerprint = (_a = req.headers) === null || _a === void 0 ? void 0 : _a.fingerprint;
+                const user = yield UserService_1.default.create(req.body, fingerprint ? fingerprint : '');
                 return res.status(200).json(user);
             }
             catch (e) {

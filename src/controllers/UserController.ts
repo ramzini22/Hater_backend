@@ -4,7 +4,8 @@ import UserService from "../services/UserService";
 class UserController{
     async create(req:Request, res:Response, next:NextFunction){
         try{
-            const user=await UserService.create(req.body, req.headers?.fingerprint)
+            const fingerprint = req.headers?.fingerprint
+            const user=await UserService.create(req.body, fingerprint?fingerprint:'')
             return res.status(200).json(user)
         }catch (e){
             next(e)

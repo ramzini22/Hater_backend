@@ -6,7 +6,7 @@ import mongoose, {ClientSession} from "mongoose";
 import user from "../models/User";
 const ApiError=require('../exceptions/api-error')
 class UserService{
-    async create({link:_id, linkType, name, surname, idCreator}:{link:string, linkType:string, name:string, surname:string, idCreator:string}, fingerprint:string){
+    async create({link:_id, linkType, name, surname, idCreator}:{link:string, linkType:string, name:string, surname:string, idCreator:string}, fingerprint:string | string[]){
         const count:Array<IUSer>= await User.find();
         const link=count.length+1;
         const Place=currectSchemaByLinkType(Number(linkType))
